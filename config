@@ -1,0 +1,7 @@
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaa2d4mumghfrhz3f6naj7zyjo5rjukzsnpf6xlyjpk2slrv4mrwz3q
+fingerprint=20:90:db:96:6e:19:bb:a2:b8:b3:d0:3b:8e:aa:f4:56
+key_file=./latinoamerica.pem
+tenancy=ocid1.tenancy.oc1..aaaaaaaaoi6b5sxlv4z773boczybqz3h2vspvvru42jysvizl77lky22ijaq
+region=	us-chicago-1
+pass_phrase=ocid1.tenancy.oc1..aaaaaaaaoi6b5sxlv4z773boczybqz3h2vspvvru42jysvizl77lky22ijaq
