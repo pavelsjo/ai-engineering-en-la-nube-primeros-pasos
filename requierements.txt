@@ -1,0 +1,5 @@
+oracledb
+tqdm
+ipywidgets
+sentence_transformers
+oci
