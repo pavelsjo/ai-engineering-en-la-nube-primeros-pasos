@@ -3,3 +3,4 @@ tqdm
 ipywidgets
 sentence_transformers
 oci
+python-dotenv

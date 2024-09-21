@@ -157,15 +157,7 @@ Antes de comenzar, asegúrate de actualizar los repositorios e instalar algunas 
 
 ```bash
 sudo apt update
-sudo apt install -y git sqlite3 libffi-dev build-essential libssl-dev zlib1g-dev
-```
-
-### 1. Instalar pip para Python 3
-Primero, asegúrate de tener Python y pip instalados:
-
-```bash
-sudo apt update
-sudo apt install -y python3-pip
+sudo apt install -y git python3-pip
 ```
 
 ### 2. Verificar que pip esté instalado correctamente
