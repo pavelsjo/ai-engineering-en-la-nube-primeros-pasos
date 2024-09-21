@@ -1,63 +1,44 @@
+import streamlit as st
 import rag
-from sentence_transformers import SentenceTransformer
-import array
-import json
+import llm
 
-encoder = SentenceTransformer('all-MiniLM-L12-v2')
+# Cargar los documentos
+docs = rag.read_json('./db/data.json')
 
-credentials = rag.credentials
+st.title('Recomendador de Workshops Nerdearla 2024')
 
-connection = rag.connect_adb(credentials["user"], credentials["password"], credentials["dsn"])
+# Campo de entrada para la pregunta (área de texto grande)
+question = st.text_area('¿Que preguntas tienes de los Workshops?', 
+                        '¿Soy programador y me interesa la inteligencia artificial generativa, ¿qué workshops me recomiendas?',
+                        height=150)
 
-table_name = "workshops_nerdearla"
-topK = 3
-
-sql = f"""
-    select payload, vector_distance(vector, :vector, COSINE) as score
-    from {table_name}
-    order by score
-    fetch approx first {topK} rows only"""   
-
-question = 'Soft Skills?'
-
-with connection.cursor() as cursor:
-  embedding = list(encoder.encode(question))
-  vector = array.array("f", embedding)
-  
-with connection.cursor() as cursor:
-  embedding = list(encoder.encode(question))
-  vector = array.array("f", embedding)
-
-  results  = []
-
-  for (info, score, ) in cursor.execute(sql, vector=vector):
-      text_content = info.read()
-      results.append((score, json.loads(text_content)))
-      
-print(results)
-
-# def get_answer(question, faqs):
-#     # Obtener respuesta a la pregunta
-#     # ...
-#     return respuesta
+# Toggle para activar/desactivar RAG
+use_rag = st.toggle("RAG")
 
 
+# Botón para obtener recomendación
+if st.button('Obtener Recomendación'):
+    with st.spinner('Generando recomendación...'):
+        if use_rag:
+            prompt = rag.augmented_prompt(question, docs)
+        else:
+            prompt = question
+        
+        resultado = llm.llama_chat_oci(prompt)
+        
+        st.subheader('Recomendación:')
+        st.write(resultado)
 
-# def procesar_pregunta(question):
-#     # Procesar la pregunta
-#     # ...
-#     return pregunta_procesada
+        if use_rag:
+            st.info('Esta recomendación fue generada utilizando RAG.')
+        else:
+            st.info('Esta recomendación fue generada sin utilizar RAG.')
 
-# def obtener_respuesta(question):
-#     faqs = load_faqs('.')
-#     pregunta_procesada = procesar_pregunta(question)
-#     respuesta = get_answer(pregunta_procesada, faqs)
-#     return respuesta
+st.sidebar.header('Acerca de')
+st.sidebar.info('''
+Esta aplicación utiliza IA generativa para recomendar workshops de Nerdearla 
+basados en tus intereses y experiencia. 
 
-# def main():
-#     question = input("Ingrese una pregunta: ")
-#     respuesta = obtener_respuesta(question)
-#     print("Respuesta:", respuesta)
-
-# if __name__ == "__main__":
-#     main()
+Puedes activar o desactivar RAG usando el toggle para ver la diferencia en las recomendaciones.
+Luego, presiona 'Obtener Recomendación' para generar una sugerencia.
+''')

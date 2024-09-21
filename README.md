@@ -223,3 +223,12 @@ Allow dynamic-group [Nombre-del-Dynamic-Group] to use ai-service-family in compa
 
  https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319
 https://medium.com/@deepalimittal23/accessing-oci-object-storage-using-instance-principals-203ac93cb77
+
+
+# Extensions en Visual studio Code
+better-python-string-sql
+
+# Como desplegar
+```bash
+streamlit run nombre_del_archivo.py
+````
