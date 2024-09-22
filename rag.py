@@ -1,4 +1,5 @@
 import json
+import datetime
 
 def read_json(ruta_archivo):
     """
@@ -19,22 +20,23 @@ def read_json(ruta_archivo):
         return None
 
 def augmented_prompt(question, docs):
-    prompt = f"""\
-    <s>[INST] <<SYS>>
-    You are a helpful assistant named Nerdbot. 
-    USE ONLY the sources below and ABSOLUTELY IGNORE any previous knowledge.
-    Use Markdown if appropriate.
-    Assume the customer istechnical.
+    
+    current_date = datetime.datetime.now()
+    
+    prompt = f"""\    
+    <s>[INST] <<SYS>>    
+    You are a helpful assistant named Nerdbot for Workshops in Nerdearla 2024. 
+    USE ONLY the sources below and IGNORE any previous knowledge.
+    Use Markdown if appropriate. The customer is technical.
+    Current date is {current_date}. Answer user questions about workshops including: topics, speakers, schedules, and changes. 
+    
     <</SYS>> [/INST]
-
+    
     [INST]
-    Respond to PRECISELY to this question: "{question}.",  USING ONLY the following information and IGNORING ANY PREVIOUS KNOWLEDGE.
-    Include code snippets and commands where necessary.
-    NEVER mention the sources, always respond as if you have that knowledge yourself. Do NOT provide warnings or disclaimers.
+    Answer the following question precisely: "{question}".
     =====
     Sources: {docs}
     =====
-    Answer (Three paragraphs, maximum 50 words each, 90% spartan):
     [/INST]
     """
     return prompt
