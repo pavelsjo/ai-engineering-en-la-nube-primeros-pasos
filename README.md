@@ -3,7 +3,35 @@
 
 # AI Engineering en la Nube - Primeros Pasos
 
-Esta guía te llevará a través del proceso de desarrollo y despliegue en [Oracle Cloud Infrastructure (OCI)](https://www.oracle.com/ar/cloud/) para construir tu primera aplicación utilizando modelos fundacionales como `LLAMA 3.1`, `prompt engineering`, y `RAG`, aprovechando principalmente la capa gratuita de OCI.
+Esta guía te llevará a través del proceso de desarrollo y despliegue en [Oracle Cloud Infrastructure (OCI)](https://www.oracle.com/ar/cloud/) para construir tu primera aplicación utilizando modelos fundacionales como `LLAMA 3.1`, `prompt engineering`, y `contexto`, aprovechando principalmente la capa gratuita de OCI.
+
+![img](./demo.gif)
+
+Esta aplicación está diseñada para ayudar a los asistentes de **Nerdearla 2024** a obtener recomendaciones personalizadas sobre los workshops, basándose en sus intereses y preguntas. Utiliza un enfoque híbrido de búsqueda de información Contexto y generación de texto con un modelo de lenguaje grande, en este caso `LLAMA 3.1` proporcionado por Oracle Cloud Infrastructure (OCI).
+
+#### Principales Características
+
+1. **Campo de Entrada para Preguntas**:
+   - El usuario puede ingresar preguntas relacionadas con los workshops disponibles en Nerdearla 2024, como por ejemplo:
+     *"Soy programador y me interesa la inteligencia artificial generativa, ¿qué workshops de Nerdearla 2024 me recomiendas?"*
+   - Este campo es dinámico, permitiendo al usuario formular cualquier tipo de consulta que le ayude a encontrar workshops relevantes.
+   - Permite hacerlo altamente personalizable, muy rápidamente.
+
+2. **Integración con RAG**:
+   - La aplicación permite activar o desactivar la funcionalidad Contexto mediante un toggle.
+   - **Contexto activado**: La pregunta del usuario se enriquece con información relevante obtenida de un conjunto de documentos predefinidos (`data.json`), lo que mejora la precisión de las respuestas.
+   - **Contexto desactivado**: La pregunta del usuario se envía directamente al modelo de lenguaje sin ninguna modificación o enriquecimiento.
+
+3. **Modelo de Lenguaje**:
+   - La aplicación se apoya en **LLAMA 3.1**, un modelo de lenguaje basado en inteligencia artificial generativa para generar respuestas a las preguntas de los usuarios.
+   - Este modelo es utilizado para interpretar la pregunta del usuario y generar una recomendación de workshop que se ajuste a sus intereses.
+
+4. **Interfaz de Usuario Interactiva**:
+   - La aplicación se construye con **Streamlit**, lo que permite una experiencia interactiva y fácil de usar.
+   - Los usuarios pueden escribir preguntas, activar/desactivar la funcionalidad Contexto y recibir respuestas instantáneas.
+
+5. **Manejo de Errores**:
+   - En caso de que haya un error durante la generación de la respuesta, como una solicitud fallida al modelo de lenguaje, la aplicación maneja el error mostrando mensajes claros al usuario para que puedan intentar nuevamente.
 
 > Puedes acceder a OCI [aquí](https://www.oracle.com/ar/cloud/free/) y crear una cuenta gratuita con $300 en créditos universales. Sigue este [tutorial de YouTube](https://www.youtube.com/watch?v=AZAb5hm1xbQ) para guiarte en el proceso.
 
@@ -149,3 +177,17 @@ Para desplegar tu aplicación con Streamlit, ejecuta el siguiente comando en la 
 ```bash
 streamlit run app.py
 ```
+
+Y haz tus preguntas:
+
+- Soy programador y me interesa la inteligencia artificial generativa, ¿qué workshops de Nerdearla 2024 me recomiendas?
+- ¿Algún Workshop cambio de Horario?
+- ¿A que workshops puedo asistir hoy?
+
+# 7. Que sigue?
+
+- Usar el stream de OCI Generative AI Inference
+- Usar RAG con una base de datos vectorial para que sea más rápido y use menos tokens.
+   - [AI Chatbot engine with Oracle Database 23ai and OCI Generative AI Services](https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319)
+- Usar tu propio modelo llama 3.1 8B
+

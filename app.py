@@ -1,9 +1,10 @@
 import streamlit as st
-import rag
+import context
 import llm
 
-# Cargar los documentos
-docs = rag.read_json('./db/data.json')
+# Cargar contexto
+docs = context.read_json('./db/workshops.json')
+user = context.read_json('./db/user.json')
 
 st.title('Workshops Nerdearla 2024')
 
@@ -12,8 +13,8 @@ question = st.text_area('¿Qué preguntas tienes de los Workshops?',
                         'Soy programador y me interesa la inteligencia artificial generativa, ¿qué workshops de Nerdearla 2024 me recomiendas?',
                         height=150)
 
-# Toggle para activar/desactivar RAG
-use_rag = st.toggle("RAG", value=True)
+# Toggle para activar/desactivar contexto
+use_rag = st.toggle("Contexto", value=True)
 
 # Botón para obtener recomendación
 if st.button('Preguntar'):
@@ -22,7 +23,7 @@ if st.button('Preguntar'):
         try:
             # Generar el prompt según si se activa o no el uso de RAG
             if use_rag:
-                prompt = rag.augmented_prompt(question, docs)
+                prompt = context.augmented_personalized_prompt(question, docs, user)
             else:
                 prompt = question
 
