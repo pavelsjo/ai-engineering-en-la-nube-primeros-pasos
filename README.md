@@ -119,11 +119,15 @@ Antes de desplegar la aplicación, es importante que la estructura de archivos s
    sudo apt update
    sudo apt install -y git python3-pip
    ```
-2. Verifica la instalación de `pip`:
+3. Verifica la versión de python:
    ```bash
-   pip3 --version
+   python3 --version #Python 3.10.12
    ```
-3. Instala las librerías necesarias para tu proyecto:
+3. Verifica la instalación de `pip`:
+   ```bash
+   pip3 --version #pip 22.0.2 
+   ```
+4. Instala las librerías necesarias para tu proyecto:
    ```bash
    pip3 install -r requirements.txt
    ```
@@ -145,7 +149,3 @@ Para desplegar tu aplicación con Streamlit, ejecuta el siguiente comando en la 
 ```bash
 streamlit run app.py
 ```
-
----
-
-Este paso adicional de crear un **grupo dinámico** asegura que las políticas de OCI funcionen correctamente con las instancias. Todo lo demás sigue el mismo flujo.
