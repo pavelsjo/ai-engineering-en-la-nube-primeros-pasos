@@ -12,7 +12,8 @@ Esta aplicación está diseñada para ayudar a los asistentes de **Nerdearla 202
 #### Materiales
 
 - AI Engineering en la Nube - Primeros Pasos [presentacion](presentacion.pdf)
-- Template - selecciona la rama template en (https://github.com/pavelsjo/ai-engineering-en-la-nube-primeros-pasos)[github]
+- Repositorio - Selecciona la rama main en [github](https://github.com/pavelsjo/ai-engineering-en-la-nube-primeros-pasos)
+- Template - selecciona la rama template en [github](https://github.com/pavelsjo/ai-engineering-en-la-nube-primeros-pasos/tree/template)
 - AI Engineering en la nube: Primeros Pasos en el Canal de Nerdearla [Youtube](https://www.youtube.com/@nerdearla/videos)
 
 #### Principales Características
