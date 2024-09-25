@@ -100,7 +100,7 @@ Esta aplicación está diseñada para ayudar a los asistentes de **Nerdearla 202
 
 ### 2.4. Explorar el Servicio de Generative AI
 
-1. Navega a **Analytics & AI* > **Generative AI**.
+1. Navega a **Analytics & AI** > **Generative AI**.
 2. En el Playground revisa los `modelos` disponibles, entre ellos `meta.llama-3.1-70b-instruct`
 3. Haz una prueba con el chat
 4. Revisa el Código en Python
