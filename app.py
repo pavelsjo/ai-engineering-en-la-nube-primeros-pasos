@@ -43,11 +43,3 @@ if st.button('Preguntar'):
             # Manejo de excepciones generales
             st.error(f"Ocurrió un error al generar la recomendación: {str(e)}")
         
-
-# Sección de información en la barra lateral
-st.sidebar.header('Acerca de')
-st.sidebar.info('''
-Esta aplicación utiliza IA generativa para responder a consultas sobre workshops de Nerdearla. \n
-Puedes preguntar sobre temas, speakers, horarios y cambios de los workshops. \n
-También puedes activar o desactivar el modo RAG para generar respuestas basadas en los documentos.
-''')

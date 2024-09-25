@@ -1,37 +1,35 @@
-# ai-engineering-en-la-nube-primeros-pasos
+![image](./image.png)
 
-# Configuración del Entorno de Desarrollo
+# AI Engineering en la Nube Primeros Pasos
 
-REFERENCIAS - https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319 AI Chatbot engine with Oracle Database 23ai and OCI Generative AI Services
+Esta guía te llevará a través del proceso de desarrollo y despliegue en [Oracle Cloud Infrastructure (OCI)](https://www.oracle.com/ar/cloud/) para construir tu primera aplicacion en la que útlices modelos fundacionales como `LLAMA 3.1`, prompt engineering, rag y usando principalmente `la capa gratuita de OCI`.
+
+> Ingresa a tu cuenta en la nube o si lo necesitas puedes crear una cuenta en la nube en el link `https://www.oracle.com/ar/cloud/free/` y puedes guiarte en el proceso con el tutorial de Youtube [Crear Cuenta Gratuita de Oracle Cloud](https://www.youtube.com/watch?v=AZAb5hm1xbQ), y con ellos podamos usar 300$ en créditos universales más el [
+Oracle Cloud (modo gratuito)](https://www.oracle.com/es/cloud/free/). En la region de Chicago, Sao Paulo, London o Frankfurt.
 
 
-## Introducción
+## 1. Configuración del Entorno de Desarrollo
 
-Esta guía te llevará a través del proceso de configuración para trabajar remotamente con tu las máaquinas virtuales en la nube usando **Visual Studio Code**, sigue estos pasos para configurar la conexión remota y las extensiones necesarias.
-
-**Tiempo estimado**: 20 minutos
+**Tiempo estimado**: 5 minutos
 
 ## Objetivos
 
 - Configurar Visual Studio Code para desarrollo remoto
 - Generar una clave ssh usando Powershell
-- Instalar y configurar Jupyter Lab Extension
 
 ---
 
-### 1. Instalar Visual Studio Code
+### Instalar Visual Studio Code
 
 1. Descarga e instala [Visual Studio Code](https://code.visualstudio.com/).
-2. Abre Visual Studio Code y busca la extensión **Remote - SSH** en el Marketplace de extensiones.
-3. Instala la extensión **Remote - SSH**.
-4. Busca e instala la extensión **Python**.
-5. Busca e instala la extensión **Jupyter**.
+2. Abre Visual Studio Code, busca e instala la extensión **Remote - SSH** en el [marketplace de extensiones](https://code.visualstudio.com/docs/remote/ssh).
+4. Busca e instala la extensión **Python** en el [marketplace de extensiones](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
 
 ---
 
-## Generar una clave SSH usando PowerShell
+### Generar una clave SSH usando PowerShell
 
-Para conectarte a tu servidor de forma segura usando Visual Studio Code, necesitas generar una clave SSH. Aquí te mostramos cómo hacerlo:
+Para conectarte a las máquinas virtuales en la nube de forma segura usando Visual Studio Code, necesitas generar una clave SSH. Aquí te muestro cómo hacerlo:
 
 ### Paso 1: Abrir PowerShell
 
@@ -232,3 +230,5 @@ better-python-string-sql
 ```bash
 streamlit run app.py
 ````
+
+REFERENCIAS - https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319 AI Chatbot engine with Oracle Database 23ai and OCI Generative AI Services

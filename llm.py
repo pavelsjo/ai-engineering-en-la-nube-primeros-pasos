@@ -1,20 +1,25 @@
 import oci
+from dotenv import dotenv_values
 
-compartment_id = "ocid1.tenancy.oc1..aaaaaaaaogia3wprum3yvc5qhcrdcxzrtwloiusgk5dbb5uibgcayapljwtq"
+# config 
+credentials = dotenv_values(".env")
 
-#llama 3.1-70B
-model_id = "ocid1.generativeaimodel.oc1.us-chicago-1.amaaaaaask7dceyaiir6nnhmlgwvh37dr2mvragxzszqmz3hok52pcgmpqta"
+# get values
+compartment_id = credentials["COMPARTMENT_ID"]
+model_id = credentials["MODEL_ID"]
+service_endpoint = credentials["SERVICE_END_POINT"]
 
 
-def llama_chat_oci(prompt):
+def llama_chat_oci(prompt, service_endpoint=service_endpoint):
     
     # Crea un autenticador basado en el rol de instancia de OCI
     signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
     
     # Crea el cliente para el servicio de inferencia de IA generativa
     client = oci.generative_ai_inference.GenerativeAiInferenceClient(
-        config={}, signer=signer,
-        service_endpoint="https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"
+        config={}, 
+        signer=signer,
+        service_endpoint=service_endpoint
     )
     
     # Crea el mensaje de entrada para el modelo
@@ -25,8 +30,11 @@ def llama_chat_oci(prompt):
     
     # Crea la solicitud del chat con parámetros como temperatura, top_p, y número de tokens
     chat_request = oci.generative_ai_inference.models.GenericChatRequest(
-        api_format="GENERIC", messages=[message],
-        max_tokens=8000, temperature=1, top_p=0.75
+        api_format="GENERIC", 
+        messages=[message],
+        max_tokens=8000, 
+        temperature=1, 
+        top_p=0.75
     )
     
     # Detalles del chat, incluyendo el modelo y el modo de servicio
