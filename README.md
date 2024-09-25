@@ -1,234 +1,151 @@
-![image](./image.png)
+![img](./image.png)
+---
 
-# AI Engineering en la Nube Primeros Pasos
+# AI Engineering en la Nube - Primeros Pasos
 
-Esta guía te llevará a través del proceso de desarrollo y despliegue en [Oracle Cloud Infrastructure (OCI)](https://www.oracle.com/ar/cloud/) para construir tu primera aplicacion en la que útlices modelos fundacionales como `LLAMA 3.1`, prompt engineering, rag y usando principalmente `la capa gratuita de OCI`.
+Esta guía te llevará a través del proceso de desarrollo y despliegue en [Oracle Cloud Infrastructure (OCI)](https://www.oracle.com/ar/cloud/) para construir tu primera aplicación utilizando modelos fundacionales como `LLAMA 3.1`, `prompt engineering`, y `RAG`, aprovechando principalmente la capa gratuita de OCI.
 
-> Ingresa a tu cuenta en la nube o si lo necesitas puedes crear una cuenta en la nube en el link `https://www.oracle.com/ar/cloud/free/` y puedes guiarte en el proceso con el tutorial de Youtube [Crear Cuenta Gratuita de Oracle Cloud](https://www.youtube.com/watch?v=AZAb5hm1xbQ), y con ellos podamos usar 300$ en créditos universales más el [
-Oracle Cloud (modo gratuito)](https://www.oracle.com/es/cloud/free/). En la region de Chicago, Sao Paulo, London o Frankfurt.
-
+> Puedes acceder a OCI [aquí](https://www.oracle.com/ar/cloud/free/) y crear una cuenta gratuita con $300 en créditos universales. Sigue este [tutorial de YouTube](https://www.youtube.com/watch?v=AZAb5hm1xbQ) para guiarte en el proceso.
 
 ## 1. Configuración del Entorno de Desarrollo
 
-**Tiempo estimado**: 5 minutos
+**Tiempo estimado**: 10 minutos
 
-## Objetivos
+### Objetivos
 
 - Configurar Visual Studio Code para desarrollo remoto
-- Generar una clave ssh usando Powershell
+- Generar una clave SSH usando PowerShell
 
----
-
-### Instalar Visual Studio Code
+### 1.1. Instalar Visual Studio Code
 
 1. Descarga e instala [Visual Studio Code](https://code.visualstudio.com/).
-2. Abre Visual Studio Code, busca e instala la extensión **Remote - SSH** en el [marketplace de extensiones](https://code.visualstudio.com/docs/remote/ssh).
-4. Busca e instala la extensión **Python** en el [marketplace de extensiones](https://marketplace.visualstudio.com/items?itemName=ms-python.python).
+2. Abre Visual Studio Code e instala las siguientes extensiones:
+   - [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+   - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 
----
+### 1.2. Generar una clave SSH usando PowerShell
 
-### Generar una clave SSH usando PowerShell
+1. Abre PowerShell: Presiona `Win + X` y selecciona **Windows PowerShell** o **Windows Terminal**.
+2. Ejecuta el siguiente comando para generar una clave SSH:
+   ```powershell
+   ssh-keygen -t rsa -b 4096
+   ```
+3. Presiona Enter para aceptar la ubicación predeterminada:  
+   `C:\Users\TuNombreDeUsuario\.ssh\id_rsa`
+4. Se crearán dos archivos en `~/.ssh/`:
+   - `id_rsa`: Tu clave privada (guárdala de forma segura).
+   - `id_rsa.pub`: Tu clave pública (esta se compartirá para autenticarte).
 
-Para conectarte a las máquinas virtuales en la nube de forma segura usando Visual Studio Code, necesitas generar una clave SSH. Aquí te muestro cómo hacerlo:
+## 2. Configuración en OCI
 
-### Paso 1: Abrir PowerShell
+**Tiempo estimado**: 10 minutos
 
-1. Presiona `Win + X` y selecciona **Windows PowerShell** o **Windows Terminal**.
-2. Navega a tu carpeta principal (por defecto es `C:\Users\TuNombreDeUsuario`).
+### 2.1. Crear un Compartimiento
 
-### Paso 2: Generar el par de llaves SSH
+1. En el panel de OCI, navega a **Identity & Security** > **Compartimientos**.
+2. Haz clic en **Crear Compartimiento** y asígnale un nombre (por ejemplo, `compartimiento-ai`).
 
-Ejecuta el siguiente comando en PowerShell para generar tu clave SSH:
-
-```powershell
-ssh-keygen -t rsa -b 4096
-```
-
-Presiona Enter para aceptar la ubicación predeterminada 
-
-```C:\Users\TuNombreDeUsuario\.ssh\id_rsa```
-
-### Paso 3: Verificar la generación de las llaves
-Se crearán dos archivos en ~/.ssh/:
-
-- id_rsa: Tu clave privada (guárdala de forma segura).
-- id_rsa.pub: Tu clave pública (compártela para autenticarte en servidores).
-
-
-# Desplegar una VM en OCI con Ubuntu 22.04 Minimal (aarch64), una Base de Datos Autónoma 23c AI y una VCN
-
-Este tutorial te guiará para crear y configurar una instancia de VM Ubuntu 22.04 Minimal en OCI utilizando la capa gratuita, además de configurar una Base de Datos Autónoma 23c AI y una red virtual (VCN).
-
-## Prerrequisitos
-
-1. Tener una cuenta en Oracle Cloud con acceso a la capa gratuita.
-2. Acceder al [Panel de Control de OCI](https://cloud.oracle.com).
-
----
-
-## Paso 1: Crear una Red Virtual (VCN)
+### 2.2. Crear una Red Virtual (VCN)
 
 1. En el panel de OCI, navega a **Redes** > **Redes Virtuales en la Nube (VCN)**.
 2. Haz clic en **Crear VCN**.
-3. Asigna un nombre a la VCN (por ejemplo, `vcn-free-tier`).
-4. Selecciona la opción de **VCN con Internet Gateway y subred pública**.
+3. Asigna un nombre a la VCN (por ejemplo, `vcn-ai-engineering`).
+4. Selecciona **VCN con Internet Gateway y subred pública**.
 5. Revisa la configuración y haz clic en **Crear**.
 
----
+### 2.3. Crear una VM Ubuntu 22.04 Minimal
 
-## Paso 2: Crear una VM Ubuntu 22.04 Minimal (aarch64)
+1. Navega a **Instancias de cómputo** > **Crear Instancia**.
+2. Asigna un nombre (ejemplo: `vm-ubuntu-22-04-minimal`).
+3. Selecciona la forma `VM.Standard.A1.Flex` (disponible en la capa gratuita).
+4. Elige **Ubuntu 22.04 Minimal (aarch64)** como sistema operativo.
+5. Configura 1 OCPU (Equivale a 2VCPU) y 8 GB de memoria.
+6. Selecciona la subred pública de la VCN creada previamente.
+7. Carga tu clave pública `id_rsa.pub` generada en el paso anterior.
+8. Haz clic en **Crear**.
 
-1. Navega a **Instancias de cómputo** en el menú de OCI.
-2. Haz clic en **Crear Instancia**.
-3. Asigna un nombre a la instancia (por ejemplo, `vm-ubuntu-22-04-minimal`).
-4. Selecciona la **forma** como `VM.Standard.A1.Flex` (compatible con la arquitectura aarch64 y disponible en la capa gratuita).
-5. En la sección **Imagen del sistema operativo**, selecciona **Ubuntu 22.04 Minimal (aarch64)**.
-6. Configura la cantidad de OCPUs (1 OCPU) y la memoria (mínimo 1 GB).
-7. Asegúrate de que la instancia esté conectada a la VCN creada previamente y selecciona la **subred pública**.
-9. Asegurate de cargar como opción la clave `id_rsa.pub``que creaste previamente.
-8. Haz clic en **Crear** para lanzar la VM.
+### 2.4. Crear un Grupo Dinámico
 
----
+Para que nuestra VM pueda "autenticarse" y utilizar otros recursos en la nube, necesitamos crear un grupo dinámico:
 
-## Paso 3: Configurar una Base de Datos Autónoma 23c AI
+1. En el menú de OCI, navega a **Identity & Security** >  **Domains** > **Default** > **Grupos Dinámicos**.
+2. Haz clic en **Crear Grupo Dinámico**.
+3. Asigna un nombre (ejemplo: `grupo-ai-engineering`).
+4. Define una regla para incluir las instancias, por ejemplo:
+   ```
+   ANY {instance.compartment.id = 'ocid1.compartment.oc1..exampleuniqueID'}   
+   ```
+   Reemplaza `'ocid1.compartment.oc1..exampleuniqueID'` con el OCID de tu compartimiento.
 
-1. Navega a **Bases de Datos** > **Base de Datos Autónoma** en el menú de OCI.
-2. Haz clic en **Crear Base de Datos Autónoma**.
-3. Asigna un nombre a la base de datos (por ejemplo, `adb-23c-ai`).
-4. Selecciona el tipo de **Base de Datos Transaccional**.
-5. En la sección de versión, selecciona **Oracle Database 23c AI**.
-6. Selecciona la **VCN** que creaste en el paso 1 para conectividad.
-7. Completa los detalles adicionales de configuración, como el nombre de usuario, contraseña y el tamaño de almacenamiento (los valores por defecto están optimizados para la capa gratuita).
-8. Haz clic en **Crear Base de Datos**.
+### 2.5. Crear una Política
 
----
+1. Navega a **Identity & Security** > **Policies**.
+2. En el compartimiento raíz, crea una nueva política con las siguientes declaraciones:
+   ```
+   Allow dynamic-group [Nombre-del-Grupo-Dinámico] to use generative-ai-family in compartment [Nombre-del-Compartimiento]
+   ```
+   Reemplaza `[Nombre-del-Grupo-Dinámico]` y `[Nombre-del-Compartimiento]` por los nombres correspondientes.
 
+## 3. Conectar a la VM con Visual Studio Code
 
-# 1. Obtener la Clave Pública y Configurar la VM
-Antes de conectarte, asegúrate de que la clave pública (generada como id_rsa.pub) esté configurada en la VM:
+1. Abre VS Code y abre la paleta de comandos (`Ctrl + Shift + P`).
+2. Escribe `Remote-SSH: Add New SSH Host...` y selecciona esta opción.
+3. Ingresa la dirección del host en formato `usuario@direccion_ip`, por ejemplo, `ubuntu@123.45.67.89`.
+4. Abre nuevamente la paleta de comandos, escribe `Remote-SSH: Connect to Host...` y selecciona el host configurado.
+5. Abre la carpeta del proyecto en la VM desde **Archivo > Abrir Carpeta...** y navega a la carpeta deseada.
 
-* Accede a tu VM: Usa el panel de control de tu proveedor de nube para acceder a tu máquina virtual o a la interfaz de administración de la red.
+## 4. Estructura de Archivos del Proyecto
 
-Añadir la clave pública a la VM:
+**Tiempo estimado**: 10 minutos
 
-Conéctate a tu VM usando un cliente SSH.
-Abre el archivo ~/.ssh/authorized_keys en la VM (si no existe, créalo).
-Copia el contenido de tu archivo id_rsa.pub y pégalo en el archivo authorized_keys en la VM.
-Guarda y cierra el archivo.
-
-# 2. Configurar Visual Studio Code para Conexión Remota
-
-Abrir VS Code: Inicia Visual Studio Code en tu computadora.
-
-Configurar la Extensión Remote - SSH:
-
-- Abre el panel de extensiones en VS Code (Ctrl+Shift+X o Cmd+Shift+X en macOS).
-- Busca e instala la extensión Remote - SSH si aún no lo has hecho.
-
-Configurar la Conexión SSH:
-
-Abre la paleta de comandos (Ctrl+Shift+P o Cmd+Shift+P en macOS).
-Escribe Remote-SSH: Add New SSH Host... y selecciona esta opción.
-Se te pedirá que ingreses la dirección del host en el formato usuario@direccion_ip, por ejemplo, ubuntu@123.45.67.89.
-Selecciona el archivo de configuración SSH donde deseas guardar la configuración (por defecto ~/.ssh/config).
-Ejemplo de configuración en ~/.ssh/config:
-
-Host mi-vm
-    HostName 123.45.67.89
-    User ubuntu
-    IdentityFile C:\Users\TuNombreDeUsuario\.ssh\id_rsa
-Asegúrate de reemplazar 123.45.67.89 con la IP pública de tu VM y ubuntu con el nombre de usuario adecuado.
-
-Conectar a la VM:
-
-Abre la paleta de comandos (Ctrl+Shift+P o Cmd+Shift+P en macOS).
-Escribe Remote-SSH: Connect to Host... y selecciona el host que configuraste (mi-vm o el nombre que elegiste).
-VS Code intentará conectarse a tu VM. Si es la primera vez que te conectas, es posible que se te pida que confirmes la autenticidad del host.
-Abrir la Carpeta de Proyecto en la VM:
-
-Una vez conectado, puedes abrir una carpeta en la VM desde el menú Archivo > Abrir Carpeta....
-Navega a la carpeta de tu proyecto o a la ubicación donde deseas trabajar.
-
-
-# Paso 3: Instalar las dependencias previas
-Antes de comenzar, asegúrate de actualizar los repositorios e instalar algunas librerías necesarias:
-
-```bash
-sudo apt update
-sudo apt install -y git python3-pip
-```
-
-### 2. Verificar que pip esté instalado correctamente
-Confirma la instalación de pip ejecutando:
+Antes de desplegar la aplicación, es importante que la estructura de archivos sea correcta. A continuación, se muestra cómo debe estar organizada:
 
 ```
-bash
-pip3 --version
+.
+├── db/data.json           # Base de datos de los documentos
+├── .env                   # Variables de entorno
+├── .gitignore             # Archivos y carpetas ignorados por Git
+├── app.py                 # Punto de entrada de la aplicación Streamlit
+├── llm.py                 # Módulo para manejo del modelo de lenguaje
+├── rag.py                 # Módulo para recuperación de información y generación asistida (RAG)
+├── README.md              # Documentación del proyecto
+├── requirements.txt       # Dependencias necesarias para ejecutar la aplicación
 ```
 
-3. Instalar las librerías necesarias
-Ahora puedes instalar las dependencias con pip3:
+## 5. Instalar Dependencias
 
-```bash
-pip3 install oracledb sentence-transformers oci
-```
+1. Una vez conectado a la VM, actualiza los repositorios e instala las librerías necesarias:
+   ```bash
+   sudo apt update
+   sudo apt install -y git python3-pip
+   ```
+2. Verifica la instalación de `pip`:
+   ```bash
+   pip3 --version
+   ```
+3. Instala las librerías necesarias para tu proyecto:
+   ```bash
+   pip3 install -r requirements.txt
+   ```
 
+### Descripción de los archivos clave
 
-# Conectarse a la base de datos oracle
+- **db/**: Contiene los documentos necesarios para el proceso de recuperación de información.
+- **.env**: Archivo donde se almacenan las variables de entorno, como claves API.
+- **.gitignore**: Archivos y directorios que no deben ser versionados por Git.
+- **app.py**: El archivo principal de la aplicación, donde se define la lógica y la interfaz de usuario utilizando Streamlit.
+- **llm.py**: Módulo que gestiona las interacciones con los modelos de lenguaje.
+- **rag.py**: Módulo para la recuperación de información asistida por IA (RAG).
+- **requirements.txt**: Lista de las dependencias necesarias para ejecutar la aplicación (como `streamlit`, `oci`, etc.).
 
-Quick Start: Developing Python Applications for Oracle Autonomous Database
-https://www.oracle.com/database/technologies/appdev/python/quickstartpython.html
+## 6. Desplegar la Aplicación
 
+Para desplegar tu aplicación con Streamlit, ejecuta el siguiente comando en la VM:
 
-[Accessing OCI Object Storage using Instance Principals](https://medium.com/@deepalimittal23/accessing-oci-object-storage-using-instance-principals-203ac93cb77)
-
-Lista de verificación para configurar Instance Principals en OCI
-
- Crear una instancia de cómputo en OCI
- Crear un Dynamic Group
-
- Ir a Identity & Security > Dynamic Groups
- Crear nuevo Dynamic Group
- Definir regla: ANY {instance.compartment.id = 'OCID_del_compartimento'}
-
-
- Crear una política
-
- Ir a Identity & Security > Policies
- Crear nueva política en el compartimento raíz
- Añadir declaraciones:
-CopyAllow dynamic-group [Nombre-del-Dynamic-Group] to use generative-ai-family in compartment [Nombre-del-compartimento]
-Allow dynamic-group [Nombre-del-Dynamic-Group] to use ai-service-family in compartment [Nombre-del-compartimento]
-
-
-
- Configurar el Virtual Cloud Network (VCN)
-
- Verificar ruta de salida a Internet (Internet Gateway o NAT Gateway)
- Configurar reglas de seguridad para permitir tráfico saliente al endpoint de Generative AI
-
-
- Instalar el SDK de OCI en la instancia
-
- Ejecutar: pip install oci
-
-
- Verificar permisos de la instancia para leer su propi
-
-
-
- # Referencias
-
- https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319
-https://medium.com/@deepalimittal23/accessing-oci-object-storage-using-instance-principals-203ac93cb77
-https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/
-
-# Extensions en Visual studio Code
-better-python-string-sql
-
-# Como desplegar
 ```bash
 streamlit run app.py
-````
+```
 
-REFERENCIAS - https://apexapps.oracle.com/pls/apex/r/dbpm/livelabs/run-workshop?p210_wid=3939&p210_wec=&session=115486261083319 AI Chatbot engine with Oracle Database 23ai and OCI Generative AI Services
+---
+
+Este paso adicional de crear un **grupo dinámico** asegura que las políticas de OCI funcionen correctamente con las instancias. Todo lo demás sigue el mismo flujo.
