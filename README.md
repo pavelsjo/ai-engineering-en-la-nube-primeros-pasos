@@ -9,6 +9,12 @@ Esta guía te llevará a través del proceso de desarrollo y despliegue en [Orac
 
 Esta aplicación está diseñada para ayudar a los asistentes de **Nerdearla 2024** a obtener recomendaciones personalizadas sobre los workshops, basándose en sus intereses y preguntas. Utiliza un enfoque híbrido de búsqueda de información Contexto y generación de texto con un modelo de lenguaje grande, en este caso `LLAMA 3.1` proporcionado por Oracle Cloud Infrastructure (OCI).
 
+#### Materiales
+
+- AI Engineering en la Nube - Primeros Pasos [presentacion](presentacion.pdf)
+- Template - selecciona la rama template en (https://github.com/pavelsjo/ai-engineering-en-la-nube-primeros-pasos)[github]
+- AI Engineering en la nube: Primeros Pasos en el Canal de Nerdearla [Youtube](https://www.youtube.com/@nerdearla/videos)
+
 #### Principales Características
 
 1. **Campo de Entrada para Preguntas**:
