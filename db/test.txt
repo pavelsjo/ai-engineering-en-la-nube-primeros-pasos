@@ -1,0 +1,60 @@
+## Evolucion para responder
+
+Evolucion:  
+     EVOLUCION POR GUARDIA:
+Pte en dia 1 de POP cirugia de reconstruccion de Cono (9/9/24).
+Aspecto hemodinamico: estable. Normotenso, con requerimiento de adrenalina 0.1 Y/kg, noradrenalina 0.15 Y/kg, milrinona a 0.4 Y/kg y vasopresina que se logró descender quedando a 0.0003U/Kg .Pulsos perifericos palpables y simetricos. 
+Aspecto respiratorio: Buena entrada bilateral de aire, algunos ruidos trasmitidos de via aerea superior. Continua en ARM SIMV setting: 29/5/18/1/0.6  ps:18 vt:500 vm:9. 
+Aspecto hidroelectrolitico: sin edemas. Diuresis + sin requerimiento de diureticos. RD:1ml/kg/hs (en 12hs).
+Analgo sedacion: SBS 0/-1. Traqnuilo. Sin dolor. En tto con fentanilo 3Y/kg y dexmedetomedina a 1Y/kg. 
+Aspecto neurologico: Moviliza 4 miembros. Pupilas mioticas reactivas y simetricas.NIRS:60/65.
+Drenajes: Mediastinal dio 190ml sero-hematico y pleuro mediastinal dio 180ml serohematico.
+Se encuentra en compania de su abuela quien se encuentra tranquila.
+Continuara con control por guardia.  
+
+>> Aspecto CV: en quirofano previo a inicio de procedemiento presetnta taquicardia paroxistica  sostenida que resuelve con 
+cardioversion electrica  continuando durante el mismo con requerimiento de goteo de Adrenalina, Milrinona y Vasopresina. Ingresa a 
+sala hemodinamicamente descompensado, taquicardico con ritmo nodal por lo que se indica posicion de trendelenbug invetida,  goteo 
+de noradrenalina manteniedo TAM entre 60-70 con persistencia de taquiarritmia (entre 200-210 LPM) se realiza pasaja en una 
+oportunidad de Adenosina sin mejoria por lo que se realiza cardioversion electrica progresando a TV y luego actividad electrica sin 
+pulso por lo que se inicia RCP con masaje cardicaco saliendo del mismo al cabo de 2 minutos sin necesidad de pasaje de drogas.
+Una vez resuelto el episodio continua con goteo de Adrenalina a 0.15 mcg/kg/min, Milrinona 0.5 mcg/kg/min, Noradrenalina 0.1 
+mcg/kg/min y vasopresina 0.0003 mcg/kg/min. Por su antecedente arritmogenico asociado a su situcion clinica actual se indica carga de 
+Amiodarona a 200 mg y luego continuara con misma dosis (200mg) en goteo de 24 hs continuo.
+
+>> Aspecto quirurgico: cuenta con herida quirurgica cubierta por gasas limpias y secas, sin signos de sangrado activo ni flogosis. 
+Presenta drenaje en pleuromediastinal derecho y mediastinal normoinsertos, osilantes sin burbujeo + cables de marcapasos  x4 
+normocolocados en VVI
+
+>> Aspecto respiratorio: Ingreso de quirofano con requerimiento de ARM con setting 24/18/5/0.5/0.6 con lo que mantiene buena 
+mecanica ventilatoria y saturaciones > 94%
+
+>> Aspecto sedoanalgesico: Se mantiene sedado en contexto de requerimiento de ARM recibiendo Fentanilo 1 mcg/kg/hr + 
+Dexmedetomedina 0.6 mcg/kg/hr. Recibe dipirona reglada como sinergista manteniedo FLACC 0/10, sin requerimiento de rescates  
+        
+    - Estrategia Diagnóstica:  
+     >> Aspecto HEN: Paciente que en contexto de acidosis metaboilica requiere pasaje de bicarbonato a su ingreso, con mejoria parcial del 
+mismo. Se contasta diuresis conservada, manteniendose ayunado con aporte por PHP a 500 ml/m2 
+
+>> Aspecto infectologico: Afebril, reciendo profilaxis ATB con cefalotina en plan de realizar durante 24 hs.
+
+>> Aspecto hematologico: Se realiza laboratorio control en su ingreso que muestra leucocitosis esperable en contexto del paciente con 
+alteracion del coagulograma por lo que se indica dosis de Vit K. Cito: Gb 20760 (79/14/7) Hb 10.5 Hto 29.9 Plaq 255000 KPTT 38 TP 51  
+        
+    - Plan Terapéutico:  
+     Paciente que permance bajo estricto control por guardia
+
+INDICACIONES
+ARM
+TET 6.5 c/b
+PHP 500 ml/m2 77/20
+Milrinona
+Vasopresina
+Adrenalina
+
+#### practicas o condiciones clinicas relevantes
+
+- Uso de inotrópicos, cualquiera de estas dorgas es indicador de esta condición 
+- Datos que indica que el paciente se encuentra en asistencia respiratoria mecánica (ARM)
+- Diagnostico de taquicardia 
+- Necesidad de realización de la practica de “cardioversión::”

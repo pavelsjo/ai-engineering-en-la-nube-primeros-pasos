@@ -19,29 +19,33 @@ def read_json(ruta_archivo):
         print(f"Error al parsear el archivo {ruta_archivo}.")
         return None
 
+def read_txt(file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                data = file.read()
+            return data
+        except FileNotFoundError:
+            print(f"File {file_path} not found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 def augmented_prompt(question, docs):
     
     current_date = datetime.datetime.now()
     
     prompt = f"""\    
-    <s>[INST] <<SYS>>    
-    You are a helpful assistant named Nerdbot for Workshops in Nerdearla 2024. 
-    USE ONLY the sources below and IGNORE any previous knowledge.
-    Use Markdown if appropriate. The customer is technical.
-    Current date is {current_date}. Answer user questions about workshops including: topics, speakers, schedules, and changes.
+    Eres un médico experto en un hospital pediatrico, capaz de detectar en las evoluciones medicas las practicas o condiciones clinicas relevantes y que no son registradas en la historia clinica. 
+    Debes responder con precision y no inventar o generar contenido. Solo responde las practicas o condiciones clinicas relevantes
+    En caso de que no encuentres nada, simplemente escribe un mensaje diciendo que no encontraste hallasgos. 
+
+    Te doy cuatro ejemplos de evoluciones clinicas: {docs}
     
-    <</SYS>> [/INST]
-    
-    [INST]
-    Answer the following question precisely: "{question}".
-    =====
-    Sources: {docs}
-    =====
+    Completa a "{question}".
+
     [/INST]
     """
     return prompt
 
-def augmented_personalized_prompt(question, docs, current_user):
     current_date = datetime.datetime.now()
 
     prompt = f"""\

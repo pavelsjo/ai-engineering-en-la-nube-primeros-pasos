@@ -3,14 +3,12 @@ import context
 import llm
 
 # Cargar contexto
-docs = context.read_json('./db/workshops.json')
-user = context.read_json('./db/user.json')
+docs = context.read_txt('./db/data.txt')
 
-st.title('Workshops Nerdearla 2024')
+st.title('Demo Gen AI 2024')
 
 # Campo de entrada para la pregunta (área de texto grande)
-question = st.text_area('¿Qué preguntas tienes de los Workshops?', 
-                        'Soy programador y me interesa la inteligencia artificial generativa, ¿qué workshops de Nerdearla 2024 me recomiendas?',
+question = st.text_area('¿Qué preguntas tienes de las notas clinicas?',
                         height=150)
 
 # Toggle para activar/desactivar contexto
@@ -23,7 +21,7 @@ if st.button('Preguntar'):
         try:
             # Generar el prompt según si se activa o no el uso de RAG
             if use_rag:
-                prompt = context.augmented_personalized_prompt(question, docs, user)
+                prompt = context.augmented_prompt(question, docs)
             else:
                 prompt = question
 
